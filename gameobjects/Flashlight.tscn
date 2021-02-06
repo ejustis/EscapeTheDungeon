@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/Linterna/Linterna.fbx" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Flashlight.gd" type="Script" id=2]
+
+[node name="Linterna" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Light" type="SpotLight" parent="." index="2"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+light_color = Color( 0.788235, 0.792157, 0.698039, 1 )
+light_energy = 2.0
+spot_range = 47.7
+spot_attenuation = 5.65685
+spot_angle = 22.8

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gameobjects/Flashlight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 2.5
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.86572, 0 )
+shape = SubResource( 1 )
+
+[node name="CameraPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28604, 0 )
+
+[node name="Camera" type="Camera" parent="CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.302452 )
+current = true
+
+[node name="Linterna" parent="CameraPivot" instance=ExtResource( 1 )]
+transform = Transform( -4.7247e-09, 0, -0.05, 0, 0.05, 0, 0.029, 0, -8.14603e-09, 0.224, -0.232, -0.698452 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Linterna.obj-1a87245bcc87874cbd4ee1b4027983f3.mesh"
+
+[deps]
+
+files=[ "res://.import/Linterna.obj-1a87245bcc87874cbd4ee1b4027983f3.mesh" ]
+
+source_file="res://models/Linterna/Linterna.obj"
+dest_files=[ "res://.import/Linterna.obj-1a87245bcc87874cbd4ee1b4027983f3.mesh", "res://.import/Linterna.obj-1a87245bcc87874cbd4ee1b4027983f3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

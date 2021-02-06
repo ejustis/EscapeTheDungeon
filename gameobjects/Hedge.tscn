@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/10449_Rectangular_Box_Hedge_L3.123c99d560b4-32f0-46c0-b698-a24550ff77bc/10449_Rectangular_Box_Hedge_v1_iterations-2.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 106.952, 34.6274, 73.8351 )
+
+[node name="Hedge" type="Spatial"]
+
+[node name="10449_Rectangular_Box_Hedge_v1_iterations-2" type="MeshInstance" parent="."]
+transform = Transform( 0.03, 0, 0, 0, -1.31134e-09, 0.03, 0, -0.03, -1.31134e-09, 0.00372803, 0, -0.00161719 )
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="10449_Rectangular_Box_Hedge_v1_iterations-2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="10449_Rectangular_Box_Hedge_v1_iterations-2/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.497, 0, 76.243 )
+shape = SubResource( 1 )
