@@ -14,6 +14,7 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 var flashlight
+var interaction_raycast
 
 var MOUSE_SENSITIVITY = 0.05
 
@@ -23,6 +24,7 @@ const JOYPAD_DEADZONE = 0.25
 func _ready():
 	camera = $CameraPivot/Camera
 	rotation_helper = $CameraPivot
+	interaction_raycast = $CameraPivot/RayCast
 	flashlight = $CameraPivot/Linterna
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
