@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.145863, 1.9901, 0.130676 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.3, 4, 0.3 )
+
+[node name="ShadowBoi" type="KinematicBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00443, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99548, 0 )
+mesh = SubResource( 2 )
+material/0 = null

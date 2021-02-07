@@ -14,7 +14,9 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 var flashlight
-var interaction_raycast
+var look_raycast
+
+var memory_count = 0
 
 var MOUSE_SENSITIVITY = 0.05
 
@@ -24,7 +26,7 @@ const JOYPAD_DEADZONE = 0.25
 func _ready():
 	camera = $CameraPivot/Camera
 	rotation_helper = $CameraPivot
-	interaction_raycast = $CameraPivot/RayCast
+	look_raycast = $CameraPivot/RayCast
 	flashlight = $CameraPivot/Linterna
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -90,6 +92,12 @@ func process_input(delta):
 	if Input.is_action_just_pressed("ui_down"):
 		flashlight.energy_current_set(flashlight.energy_current_get() - 0.1)
 	# ----------------------------------
+	
+	# ----------------------------------
+	# Interact
+	if Input.is_action_just_pressed("interact"):
+		check_for_interaction()
+	# ----------------------------------
 
 	# ----------------------------------
 	# Capturing/Freeing the cursor
@@ -99,6 +107,13 @@ func process_input(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
+
+func check_for_interaction():
+	if look_raycast.is_colliding():
+		var obj = look_raycast.get_collider().get_parent()
+		print(obj.get_name())
+		if obj.is_in_group("Memories"):
+			obj.disable_and_hide()
 
 func process_movement(delta):
 	dir.y = 0
@@ -166,3 +181,8 @@ func _input(event):
 		var camera_rot = rotation_helper.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
+
+
+func _on_Memory_activated():
+	memory_count += 1
+	flashlight.energy_current_set(flashlight.energy_current_get() + 0.5)
