@@ -24,6 +24,7 @@ var camera
 var rotation_helper
 var flashlight
 var look_raycast
+var hit_timer
 
 var memory_count = 0
 
@@ -39,6 +40,7 @@ func _ready():
 	rotation_helper = $CameraPivot
 	look_raycast = $CameraPivot/RayCast
 	flashlight = $CameraPivot/Linterna
+	hit_timer = $HitTimer
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -220,7 +222,10 @@ func _on_Memory_activated():
 
 
 func _on_ShadowBoi_touched_player():
-	if memory_count > 0:
-		memory_count -= 1
-	else:
-		flashlight.energy_current_set(flashlight.energy_current_get() - 0.5)
+	if hit_timer.is_stopped():
+		if memory_count > 0:
+			memory_count -= 1
+		else:
+			flashlight.energy_current_set(flashlight.energy_current_get() - 0.5)
+		hit_timer.start()
+	

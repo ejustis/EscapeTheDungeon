@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/RPG-Bed.glb" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.995572, 2.0405, 0.686057 )
+
+[node name="Bed" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233722, -0.0459214, -0.367278 )
+
+[node name="StaticBody" type="StaticBody" parent="real_matress_Cube007" index="0"]
+
+[node name="CollisionShape" type="CollisionShape" parent="real_matress_Cube007/StaticBody" index="0"]
+transform = Transform( 1, 0, 0, 0, 0.999999, 9.23706e-14, 0, -9.23706e-14, 0.999999, 0.233722, 0.481861, -0.730381 )
+shape = SubResource( 1 )

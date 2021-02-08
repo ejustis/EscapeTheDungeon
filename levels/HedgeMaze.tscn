@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://gameobjects/Hedge.tscn" type="PackedScene" id=1]
+[ext_resource path="res://gameobjects/Fountain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gameobjects/hedge_light.tscn" type="PackedScene" id=3]
 
 [node name="HedgeMaze" type="Spatial"]
 
@@ -126,3 +128,18 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -14.263
 
 [node name="Hedge8" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -19.1173, 0, 10.4181 )
+
+[node name="Fountain" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15.8096, -0.272806, 10.1026 )
+
+[node name="hedge_light" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.0119582, -0.191437, -0.981432, 0.0247113, 0.981259, -0.191102, 0.999623, -0.0219672, 0.0164647, 18.521, 4.3304, 9.94392 )
+
+[node name="hedge_light2" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.0603183, -0.250802, 0.966157, -0.00150807, 0.967942, 0.251171, -0.998178, 0.0136932, -0.0587629, 8.73127, 0.13982, 9.98708 )
+
+[node name="hedge_light3" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.99664, 0, 0.0819038, 0.0197741, 0.970418, 0.24062, -0.0794809, 0.241431, -0.967158, -9.90852, 0.0197037, -7.26392 )
+
+[node name="hedge_light4" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.99664, 0, 0.0819038, 0.0197741, 0.970418, 0.24062, -0.0794809, 0.241431, -0.967158, 6.20645, 0.174148, -5.67488 )

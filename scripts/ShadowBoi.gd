@@ -22,13 +22,14 @@ func _physics_process(delta):
 			path_node += 1
 		else:
 			move_and_slide(direction.normalized() * speed, Vector3.UP, 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
+			check_for_player_collision()
 	
 
 func check_for_player_collision():
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
-		if collision.get_collider().is_in_group("enemies"):
-			emit_signal("touched_playe")
+		if collision.get_collider().is_in_group("player"):
+			emit_signal("touched_player")
 		
 	
 func move_to(target_pos):

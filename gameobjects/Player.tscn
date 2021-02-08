@@ -7,7 +7,9 @@
 radius = 0.6
 height = 2.5
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" groups=[
+"player",
+]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 2 )
@@ -31,3 +33,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.310547 )
 enabled = true
 cast_to = Vector3( 0, 0, -2.5 )
 collision_mask = 9
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
