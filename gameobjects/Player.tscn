@@ -8,6 +8,8 @@ radius = 0.6
 height = 2.5
 
 [node name="Player" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -28,3 +30,4 @@ transform = Transform( -4.7247e-09, 0, -0.05, 0, 0.05, 0, 0.029, 0, -8.14603e-09
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.310547 )
 enabled = true
 cast_to = Vector3( 0, 0, -2.5 )
+collision_mask = 9

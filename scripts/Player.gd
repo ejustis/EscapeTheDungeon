@@ -3,8 +3,17 @@ extends KinematicBody
 const GRAVITY = -24.8
 var vel = Vector3()
 const MAX_SPEED = 4
+const MAX_SPRINT_SPEED = 9
 #const JUMP_SPEED = 18
 const ACCEL = 2
+const SPRINT_ACCEL = 4
+
+var max_stamina = 50
+var cur_stamina = max_stamina
+const STAMINA_REGEN = 0.1
+const STAMINA_DRAIN = .5
+var SPRINT_EXHAUSTION = max_stamina/2
+var exhausted = false
 
 var dir = Vector3()
 
@@ -22,6 +31,8 @@ var MOUSE_SENSITIVITY = 0.05
 
 var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.25
+
+var is_sprinting = false
 
 func _ready():
 	camera = $CameraPivot/Camera
@@ -53,6 +64,10 @@ func process_input(delta):
 		input_movement_vector.x -= 1
 	if Input.is_action_pressed("movement_right"):
 		input_movement_vector.x += 1
+	
+	is_sprinting = false
+	if Input.is_action_pressed("sprint"):
+		is_sprinting = true
 		
 	if Input.get_connected_joypads().size() > 0:
 
@@ -125,13 +140,29 @@ func process_movement(delta):
 	hvel.y = 0
 
 	var target = dir
-	target *= MAX_SPEED
+	
+	if is_sprinting && !exhausted:
+		cur_stamina = clamp(cur_stamina - STAMINA_DRAIN, 0, max_stamina)
+		if cur_stamina == 0:
+			exhausted = true
+		
+		target *= MAX_SPRINT_SPEED
+	else:
+		cur_stamina = clamp(cur_stamina + STAMINA_REGEN, 0, max_stamina)
+		if exhausted && cur_stamina >= SPRINT_EXHAUSTION:
+			exhausted = false
+		target *= MAX_SPEED
 
 	var accel
 	if dir.dot(hvel) > 0:
-		accel = ACCEL
+		if is_sprinting:
+			accel = SPRINT_ACCEL
+		else:
+			accel = ACCEL
 	else:
 		accel = DEACCEL
+		
+#	print("Stamina: ", cur_stamina)
 
 	hvel = hvel.linear_interpolate(target, accel * delta)
 	vel.x = hvel.x
@@ -186,3 +217,10 @@ func _input(event):
 func _on_Memory_activated():
 	memory_count += 1
 	flashlight.energy_current_set(flashlight.energy_current_get() + 0.5)
+
+
+func _on_ShadowBoi_touched_player():
+	if memory_count > 0:
+		memory_count -= 1
+	else:
+		flashlight.energy_current_set(flashlight.energy_current_get() - 0.5)
